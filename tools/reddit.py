@@ -14,7 +14,7 @@ def download_reddit(video_url, save_directory):
     browser = webdriver.Chrome(options=options)
     browser.get(video_url)
 
-    title = getTitle(video_url)
+    title = get_title(video_url)
 
     #get video source from link
     try:
@@ -26,11 +26,12 @@ def download_reddit(video_url, save_directory):
         video_link = (browser.find_element(By.TAG_NAME, 'a')).get_attribute("href")
         print(video_link)
         input("is this link valid ?")
+        return 0
 
-    print("video was downloaded successfully")
     browser.quit()
+    return 1
     
-def getTitle(video_url):
+def get_title(video_url):
     title_temp = video_url.split("/")
     title = title_temp[7]
     return title
